@@ -17,6 +17,8 @@
   "dependencies": {
     "dayjs": "^1.11.6",
     "gsap": "^3.11.3",
+    "simplex-noise": "^4.0.1",
+    "three": "^0.146.0",
     "tsparticles": "^2.5.3",
     "tsparticles-preset-snow": "^2.5.3",
     "tsparticles-shape-heart": "^2.5.3",

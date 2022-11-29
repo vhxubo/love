@@ -38,7 +38,7 @@ export default {
         },
         particles: {
           number: {
-            value: 52,
+            value: 104,
           },
           move: {
             enable: true,
@@ -101,7 +101,9 @@ export default {
         </div>
         <div class="mt-8">第{{ day }}天</div>
       </div>
-      <div class="flex flex-1">img</div>
+      <div class="flex flex-1 h-full bg-white opacity-20">
+        <three-heart></three-heart>
+      </div>
     </div>
     <Particles
       id="tsparticles"
