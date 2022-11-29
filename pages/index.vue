@@ -3,13 +3,17 @@ import { loadFull } from "tsparticles";
 import { loadHeartShape } from "tsparticles-shape-heart";
 import gsap from "gsap";
 import dayjs from "dayjs";
+
+const beginDate = "2014-11-12";
+const day = ref(dayjs().diff(beginDate, "day"));
+
 onMounted(() => {
   const timeLine = gsap.timeline({ repeat: -1 });
   gsap.set("#text-utils-animation", { x: 0, y: 0 });
   timeLine
     .fromTo(
       "#text-utils-animation .right span",
-      { y: 100, opacity: 0 },
+      { y: 50, opacity: 0 },
       { y: 0, opacity: 1, stagger: 1 }
     )
     .to(
@@ -77,21 +81,25 @@ export default {
 
 <template>
   <main>
-    <div class="z-10 h-screen flex justify-center pl-32">
+    <div class="z-10 h-screen flex justify-center pl-32 select-none">
       <div
         id="text-utils-animation"
         class="test flex flex-1 flex-col justify-center text-pink-500 text-5xl"
       >
         <div class="flex">
-          <div class="left">张宁</div>
+          <span> 与 </span>
+          <div class="left font-bold">张宁</div>
           <div class="right">
+            <span>宝贝</span>
             <span>爱人</span>
             <span>女友</span>
             <span>老婆</span>
-            <span>兄弟</span>
+            <span>姐妹</span>
             <span>闺蜜</span>
           </div>
+          <span>相爱的</span>
         </div>
+        <div class="mt-8">第{{ day }}天</div>
       </div>
       <div class="flex flex-1">img</div>
     </div>
@@ -103,14 +111,13 @@ export default {
   </main>
 </template>
 <style lang="scss">
-.left {
-  margin-right: 8px;
-}
 .right {
   display: inline-block;
   position: relative;
-  flex: 1;
+  width: 4ch;
   span {
+    width: 100%;
+    text-align: center;
     position: absolute;
     top: 0;
     left: 0;
