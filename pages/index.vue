@@ -101,7 +101,7 @@ export default {
         </div>
         <div class="mt-8">第{{ day }}天</div>
       </div>
-      <div class="flex flex-1 h-full bg-white opacity-20">
+      <div class="flex flex-1 h-full">
         <three-heart></three-heart>
       </div>
     </div>

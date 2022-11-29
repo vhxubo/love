@@ -2,26 +2,28 @@
 import gsap from "gsap";
 import * as THREE from "three";
 import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
-import { TrackballControls } from 'three/addons/controls/TrackballControls.js';
-import { MeshSurfaceSampler } from 'three/addons/math/MeshSurfaceSampler.js';
+import { TrackballControls } from "three/addons/controls/TrackballControls.js";
+import { MeshSurfaceSampler } from "three/addons/math/MeshSurfaceSampler.js";
 import { createNoise4D } from "simplex-noise";
 const noise4D = createNoise4D();
+const threeRef = ref(null);
 
 onMounted(() => {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(
     75,
-    window.innerWidth / window.innerHeight,
+    threeRef.value.clientWidth / threeRef.value.clientHeight,
     0.1,
     1000
   );
 
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
+    alpha: true,
   });
-  renderer.setClearColor(0xff5555);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
+  renderer.setClearColor(0x000000, 0);
+  renderer.setSize(threeRef.value.clientWidth, threeRef.value.clientHeight);
+  threeRef.value.appendChild(renderer.domElement);
 
   camera.position.z = 1;
 
@@ -156,14 +158,14 @@ onMounted(() => {
 
   window.addEventListener("resize", onWindowResize, false);
   function onWindowResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = threeRef.value.clientWidth / threeRef.value.clientHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(threeRef.value.clientWidth, threeRef.value.clientHeight);
   }
 });
 </script>
 
 <template>
-  <div id="three">hello</div>
+  <div id="three" ref="threeRef" class="h-full w-full"></div>
 </template>
 <style lang="sass" scoped></style>
